@@ -29,6 +29,7 @@
     <string name="title_feed">Feed</string>
     <string name="title_search">Search</string>
     <string name="title_messaging">Messaging</string>
+    <string name="title_confirming">Confirm</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
 

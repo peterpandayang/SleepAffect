@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/create_new_confirmation"
+        android:icon="@drawable/ic_add_black_24dp"
+        android:title="create"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        app:showAsAction="ifRoom"
+        android:onClick="createConfirmation"/>
+
+    <item
+        android:id="@+id/logout"
+        android:icon="@drawable/ic_power_settings_new_black_24dp"
+        android:title="logout"
+        app:showAsAction="ifRoom"/>
+</menu>
