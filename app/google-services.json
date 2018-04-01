@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1005100243817",
+    "firebase_url": "https://teenplus-3db47.firebaseio.com",
+    "project_id": "teenplus-3db47",
+    "storage_bucket": "teenplus-3db47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1005100243817:android:b8c88fe38a00eca7",
+        "android_client_info": {
+          "package_name": "com.example.bingkunyang.teenplus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1005100243817-5m086mpbtiu6oi90cjihjvshb9sap1ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4XQ_TFfLKGIKY3FSZdxudKTW8CnSyoGM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
