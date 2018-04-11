@@ -15,6 +15,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.ConfirmFragment;
+import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.FeedFragment;
+import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.MoodFragment;
+import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.ProfileFragment;
 import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.model.Record;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -47,8 +50,8 @@ public class HomeActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        loadFragment(ConfirmFragment.newInstance());
-        toolbar.setTitle("Confirming");
+        loadFragment(MoodFragment.newInstance());
+        toolbar.setTitle("Mood for Today");
     }
 
     private void loadFragment(Fragment fragment) {
@@ -66,22 +69,21 @@ public class HomeActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment fragment;
             switch (item.getItemId()) {
-                case R.id.navigation_confirm:
-                    toolbar.setTitle("Confirming");
-                    fragment = ConfirmFragment.newInstance();
-                    loadFragment(fragment);
+                case R.id.navigation_mood:
+                    toolbar.setTitle("Mood for Today");
+                    loadFragment(MoodFragment.newInstance());
                     return true;
                 case R.id.navigation_feed:
                     toolbar.setTitle("Feed");
+                    loadFragment(FeedFragment.newInstance());
                     return true;
-                case R.id.navigation_search:
-                    toolbar.setTitle("Search");
-                    return true;
-                case R.id.navigation_notifications:
-                    toolbar.setTitle("Notifications");
+                case R.id.navigation_confirm:
+                    toolbar.setTitle("Confirm to sleep");
+                    loadFragment(ConfirmFragment.newInstance());
                     return true;
                 case R.id.navigation_profile:
                     toolbar.setTitle("Profile");
+                    loadFragment(ProfileFragment.newInstance());
                     return true;
             }
             return false;

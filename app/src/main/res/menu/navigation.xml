@@ -2,14 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_confirm"
+        android:id="@+id/navigation_mood"
         android:icon="@drawable/ic_chat_bubble_outline_black_24dp"
-        android:title="@string/title_confirming" />
-
-    <item
-        android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="@string/title_search" />
+        android:title="@string/title_mood" />
 
     <item
         android:id="@+id/navigation_feed"
@@ -17,9 +12,10 @@
         android:title="@string/title_feed" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_confirm"
         android:icon="@drawable/ic_notifications_none_black_24dp"
-        android:title="@string/title_notifications" />
+        android:title="@string/title_confirming" />
+
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_perm_identity_black_24dp"

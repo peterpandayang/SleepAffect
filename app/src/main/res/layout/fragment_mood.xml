@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f1f5f7"
-    tools:context="com.example.bingkunyang.teenplus.fragment.ConfirmFragment">
+    tools:context="com.example.bingkunyang.teenplus.fragment.MoodFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -15,15 +15,15 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingTop="10dp"
-            android:text="Please click + button on the top right corner to confirm to sleep"
+            android:text="Puppy's mood for today"
             android:textColor="#111"
             android:textSize="16dp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
+        <ImageView
+            android:id="@+id/puppy_image"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:scrollbars="vertical" />
+            android:layout_centerInParent="true"
+            />
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>
