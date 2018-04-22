@@ -2,6 +2,10 @@ package com.example.bingkunyang.teenplus;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -10,9 +14,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MenuItem;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.ConfirmFragment;
 import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.FeedFragment;
@@ -25,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by bingkunyang on 3/14/18.
@@ -36,6 +41,9 @@ public class HomeActivity extends AppCompatActivity {
     private ActionBar toolbar;
     private FirebaseAuth auth;
     private DatabaseReference mDatabase;
+
+    private static ConcurrentLinkedQueue<Float> dataQ = new ConcurrentLinkedQueue<>();
+    private static ConcurrentLinkedQueue<Float> timeQ = new ConcurrentLinkedQueue<>();
 
 
     @Override
@@ -112,16 +120,61 @@ public class HomeActivity extends AppCompatActivity {
 //                LinearLayout.LayoutParams.MATCH_PARENT,
 //                LinearLayout.LayoutParams.MATCH_PARENT);
 //        input.setLayoutParams(lp);
+
         final String email = auth.getCurrentUser().getEmail();
         final Date currentTime = Calendar.getInstance().getTime();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        // Create TextView
+        final TextView lightText = new TextView (this);
+        lightText.setPadding(40, 40, 40, 40);
+        lightText.setGravity(Gravity.CENTER);
+        lightText.setTextSize(20);
+
+        /*
+        * source: https://stackoverflow.com/questions/17411562/android-light-sensor-detect-significant-light-changes
+        * */
+        final SensorEventListener lightSensorListener = new SensorEventListener(){
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+                // TODO Auto-generated method stub
+
+            }
+            @Override
+            public void onSensorChanged(SensorEvent event) {
+                if(event.sensor.getType() == Sensor.TYPE_LIGHT){
+                    lightText.setText("LIGHT: " + event.values[0]);
+                    System.out.println("the changed value is : " + event.values[0]);
+                }
+            }
+        };
+
+        SensorManager mySensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+        Sensor LightSensor = mySensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
+        if(LightSensor != null){
+            System.out.println("has light sensor");
+            lightText.setText("Sensor.TYPE_LIGHT Available");
+            mySensorManager.registerListener(
+                    lightSensorListener,
+                    LightSensor,
+                    SensorManager.SENSOR_DELAY_NORMAL);
+
+        }else{
+            System.out.println("no light sensor");
+            lightText.setText("Sensor.TYPE_LIGHT NOT Available");
+        }
+
         builder.setTitle("Create your confirmation")
+                .setView(lightText)
                 .setPositiveButton("confirm sleep", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         //do things
                         String text = currentTime.toString();
                         Record record = new Record(email, text);
+
+                        // before sending to the database
+
+
                         mDatabase.child("confirmations").push().setValue(record);
                     }
                 });
@@ -129,5 +182,6 @@ public class HomeActivity extends AppCompatActivity {
         alert.show();
 
     }
+
 
 }

@@ -45,7 +45,6 @@ public class ConfirmFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.confirm_menu, menu);
         super.onCreateOptionsMenu(menu, inflater);
-
     }
 
 }
