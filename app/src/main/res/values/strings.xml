@@ -32,5 +32,6 @@
     <string name="title_confirming">Confirm</string>
     <string name="title_mood">Mood</string>
     <string name="title_profile">Profile</string>
+    <string name="show_mood">Show Mood</string>
 
 </resources>

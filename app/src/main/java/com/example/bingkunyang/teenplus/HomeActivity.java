@@ -23,13 +23,19 @@ import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragmen
 import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.MoodFragment;
 import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.ProfileFragment;
 import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.model.Record;
+import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.thread.SenderThread;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * Created by bingkunyang on 3/14/18.
@@ -43,7 +49,13 @@ public class HomeActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     private static ConcurrentLinkedQueue<Float> dataQ = new ConcurrentLinkedQueue<>();
-    private static ConcurrentLinkedQueue<Float> timeQ = new ConcurrentLinkedQueue<>();
+    private static ConcurrentLinkedQueue<Date> timeQ = new ConcurrentLinkedQueue<>();
+    private DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    private float sum = 0;
+    private static ThreadPoolExecutor threadPool = (ThreadPoolExecutor) Executors.newFixedThreadPool(10);
+
+//    private boolean clicked = false;
+
 
 
     @Override
@@ -131,6 +143,11 @@ public class HomeActivity extends AppCompatActivity {
         lightText.setGravity(Gravity.CENTER);
         lightText.setTextSize(20);
 
+        dataQ = new ConcurrentLinkedQueue<>();
+        timeQ = new ConcurrentLinkedQueue<>();
+        sum = 0;
+//        clicked = false;
+
         /*
         * source: https://stackoverflow.com/questions/17411562/android-light-sensor-detect-significant-light-changes
         * */
@@ -144,7 +161,11 @@ public class HomeActivity extends AppCompatActivity {
             public void onSensorChanged(SensorEvent event) {
                 if(event.sensor.getType() == Sensor.TYPE_LIGHT){
                     lightText.setText("LIGHT: " + event.values[0]);
-                    System.out.println("the changed value is : " + event.values[0]);
+//                    System.out.println("the changed value is : " + event.values[0]);
+                    Date date = new Date();
+                    dataQ.offer(event.values[0]);
+                    timeQ.offer(date);
+                    sum += event.values[0];
                 }
             }
         };
@@ -172,16 +193,12 @@ public class HomeActivity extends AppCompatActivity {
                         String text = currentTime.toString();
                         Record record = new Record(email, text);
 
-                        // before sending to the database
-
-
-                        mDatabase.child("confirmations").push().setValue(record);
+                        SenderThread thread = new SenderThread(text, record, mDatabase, timeQ, dataQ, sum);
+                        threadPool.execute(thread);
                     }
                 });
         AlertDialog alert = builder.create();
         alert.show();
-
     }
-
 
 }
