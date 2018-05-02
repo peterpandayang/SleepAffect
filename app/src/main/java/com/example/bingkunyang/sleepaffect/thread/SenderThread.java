@@ -1,10 +1,9 @@
-package com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.thread;
+package com.example.bingkunyang.sleepaffect.thread;
 
-import android.app.Activity;
-
-import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.model.Record;
+import com.example.bingkunyang.sleepaffect.model.Record;
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -19,6 +18,7 @@ public class SenderThread extends Thread {
     ConcurrentLinkedQueue<Date> timeQ;
     ConcurrentLinkedQueue<Float> dataQ;
     float sum;
+    final Date currentTime = Calendar.getInstance().getTime();
 
     public SenderThread(String text, Record record, DatabaseReference mDatabase, ConcurrentLinkedQueue<Date> timeQ, ConcurrentLinkedQueue<Float> dataQ, float sum) {
         this.text = text;
@@ -50,7 +50,7 @@ public class SenderThread extends Thread {
                 System.out.println("time diff is:" + diff);
                 float avg = sum / timeQ.size();
                 System.out.println("light value is: " + avg);
-                if(diff > 60 && avg < 60){
+                if(avg < 30){
                     break;
                 }
                 try {
@@ -60,6 +60,7 @@ public class SenderThread extends Thread {
                 }
             }
         }
+        record.time = currentTime.toString();
 
         mDatabase.child("confirmations").push().setValue(record);
     }

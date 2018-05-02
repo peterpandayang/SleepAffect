@@ -1,16 +1,13 @@
-package com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment;
+package com.example.bingkunyang.sleepaffect.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.support.v4.app.Fragment;
 
 
-import com.example.bingkunyang.teenplus.R;
+import com.example.bingkunyang.sleepaffect.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

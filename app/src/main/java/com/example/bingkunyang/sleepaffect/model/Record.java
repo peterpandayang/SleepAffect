@@ -1,4 +1,4 @@
-package com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.model;
+package com.example.bingkunyang.sleepaffect.model;
 
 /**
  * Created by bingkunyang on 4/1/18.

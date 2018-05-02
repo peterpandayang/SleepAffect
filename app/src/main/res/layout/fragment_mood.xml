@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f1f5f7"
-    tools:context="com.example.bingkunyang.teenplus.fragment.MoodFragment">
+    tools:context="com.example.bingkunyang.sleepaffect.fragment.MoodFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,6 +25,13 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             />
+        <!--<TextView-->
+            <!--android:id="@+id/text_view_id"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="10dp"-->
+            <!--android:textColor="#111"-->
+            <!--android:textSize="16dp" />-->
         <Button
             android:id="@+id/show_mood"
             android:layout_width="wrap_content"
@@ -33,6 +40,6 @@
             android:paddingBottom="10dp"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="@string/show_mood"/>
+            android:text="Show Yesterday Sleep Time"/>
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

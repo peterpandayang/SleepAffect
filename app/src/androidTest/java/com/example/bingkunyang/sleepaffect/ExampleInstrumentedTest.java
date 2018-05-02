@@ -1,4 +1,4 @@
-package com.example.bingkunyang.teenplus;
+package com.example.bingkunyang.sleepaffect;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

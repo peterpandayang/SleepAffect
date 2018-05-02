@@ -1,4 +1,4 @@
-package com.example.bingkunyang.teenplus;
+package com.example.bingkunyang.sleepaffect;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,17 +18,16 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.ConfirmFragment;
-import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.FeedFragment;
-import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.MoodFragment;
-import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.fragment.ProfileFragment;
-import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.model.Record;
-import com.example.bingkunyang.teenplus.com.example.bingkunyang.teenplus.thread.SenderThread;
+import com.example.bingkunyang.sleepaffect.fragment.ConfirmFragment;
+import com.example.bingkunyang.sleepaffect.fragment.FeedFragment;
+import com.example.bingkunyang.sleepaffect.fragment.MoodFragment;
+import com.example.bingkunyang.sleepaffect.fragment.ProfileFragment;
+import com.example.bingkunyang.sleepaffect.model.Record;
+import com.example.bingkunyang.sleepaffect.thread.SenderThread;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
