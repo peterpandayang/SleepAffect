@@ -101,10 +101,10 @@ public class HomeActivity extends AppCompatActivity {
                     toolbar.setTitle("Confirm to sleep");
                     loadFragment(ConfirmFragment.newInstance());
                     return true;
-                case R.id.navigation_profile:
-                    toolbar.setTitle("Profile");
-                    loadFragment(ProfileFragment.newInstance());
-                    return true;
+//                case R.id.navigation_profile:
+//                    toolbar.setTitle("Profile");
+//                    loadFragment(ProfileFragment.newInstance());
+//                    return true;
             }
             return false;
         }
