@@ -10,3 +10,5 @@ project and build it.
 
 The puppy application is the one with puppy expression and the nopuppy one
 is the one with text form of showing previous sleep time.
+
+Please make sure that your device is connected to the internet all the time. 
